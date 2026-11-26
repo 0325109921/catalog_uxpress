@@ -14,6 +14,7 @@ from utils.excepciones import AutenticacionError, PermisoDenegadoError
 from utils.impresion import l, ms, limpiar_consola
 from utils.logo import imprimir_logo
 from utils.validaciones import pedir_texto, confirmar_accion
+from menus.menu_consultas import menu_consultas
 
 
 def mostrar_login(auth: ServicioAutenticacion):
@@ -23,9 +24,9 @@ def mostrar_login(auth: ServicioAutenticacion):
     while True:
         limpiar_consola()
         imprimir_logo()
-        l(45)
-        print("      CATALOG UXPRESS - INICIO DE SESION")
-        l(45)
+        l(92)
+        print("                         CATALOG UXPRESS - INICIO DE SESION")
+        l(92)
         print("1. Iniciar sesion")
         print("0. Salir del sistema")
         opcion = input("\nSelecciona una opcion: ").strip()
@@ -60,6 +61,7 @@ def menu_admin(conexion, auth: ServicioAutenticacion):
         print("2. Catalogos, Productos y Stock")
         print("3. Clientes, Vendedores y Repartidores")
         print("4. Pedidos, Pagos y Entregas")
+        print("5. Reportes y Consultas")
         print("0. Cerrar sesion")
 
         opcion = input("\nElige un modulo: ").strip()
@@ -75,6 +77,8 @@ def menu_admin(conexion, auth: ServicioAutenticacion):
                 menu_personas(conexion, auth, solo_clientes=False)
             elif opcion == "4":
                 menu_operaciones(conexion, auth)
+            elif opcion == "5":
+                menu_consultas(conexion)
             elif opcion == "0":
                 if confirmar_accion("Seguro que deseas cerrar sesion? (s/n): "):
                     auth.cerrar_sesion()
@@ -110,6 +114,7 @@ def menu_vendedor(conexion, auth: ServicioAutenticacion):
         print("1. Consultar Catalogos, Productos y Stock")
         print("2. Gestion de Clientes y Direcciones")
         print("3. Pedidos, Pagos y Entregas")
+        print("4. Reportes y Consultas")
         print("0. Cerrar sesion")
 
         opcion = input("\nElige un modulo: ").strip()
@@ -120,6 +125,8 @@ def menu_vendedor(conexion, auth: ServicioAutenticacion):
             menu_personas(conexion, auth, solo_clientes=True)
         elif opcion == "3":
             menu_operaciones(conexion, auth)
+        elif opcion == "4":
+            menu_consultas(conexion)
         elif opcion == "0":
             if confirmar_accion("Seguro que deseas cerrar sesion? (s/n): "):
                 auth.cerrar_sesion()

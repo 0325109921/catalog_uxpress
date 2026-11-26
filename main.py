@@ -2,6 +2,7 @@ from conexion import Conexion
 from menus.menu_principal import iniciar_sistema
 
 
+
 def main():
     gestor_conexion = Conexion("localhost", "root", "", "catalog_uxpress")
     conexion_activa = gestor_conexion.conectar()
